@@ -1,0 +1,12 @@
+#!/usr/bin/make -f
+
+PKG=$(shell dh_listpackages)
+VERSION=1
+
+%:
+	dh $@
+
+override_dh_auto_install:
+	for FILE in modules/*; do \
+	  mv $$FILE ./debian/$(PKG)/usr/lib/$(PKG); \
+	done
