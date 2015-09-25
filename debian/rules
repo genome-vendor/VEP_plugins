@@ -1,7 +1,7 @@
 #!/usr/bin/make -f
 
 PKG=$(shell dh_listpackages)
-VERSION=1
+VERSION=2
 
 %:
 	dh $@
