@@ -4,7 +4,7 @@ vepplugins-1 (1) unstable; urgency=low
 
  -- The Genome Institute <gmt@genome.wustl.edu>  Mon, 29 Oct 2012 15:00:00 -0600
 
-vepplugins-2 (2) unstable; urgency=low
+vepplugins-1 (2) unstable; urgency=low
 
   * Update Downstread plugin to fix the return hash keys. Add a new plugin
     Wildtype for getting the wildtype protein sequence.

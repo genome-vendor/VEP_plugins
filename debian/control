@@ -1,11 +1,11 @@
-Source: vepplugins-2
+Source: vepplugins-1
 Section: science
 Priority: optional
 Build-Depends: debhelper (>= 7)
 Maintainer: The Genome Institute <gmt@genome.wustl.edu>
 Homepage: https://github.com/genome-vendor/VEP_plugins
 
-Package: vepplugins-2
+Package: vepplugins-1
 Architecture: amd64
 Depends:
 Description: VEP plugins provide additional functionality to the VEP script.  This package copies the plugins and associated config files to a known location on the file system.
