@@ -42,22 +42,25 @@ sub run {
 
     my $tv = $tva->transcript_variation;
     my $tr = $tv->transcript;
-    my $cds_seq = defined($tr->{_variation_effect_feature_cache}) ? $tr->{_variation_effect_feature_cache}->{translateable_seq} : $tr->translateable_seq;
+    my $cds_seq;
+    my $codon_table = 1;
+    if (defined($tr->{_variation_effect_feature_cache})) {
+        $cds_seq = $tr->{_variation_effect_feature_cache}->{translateable_seq};
+        $codon_table = $tr->{_variation_effect_feature_cache}->{codon_table};
+    }
+    else {
+        $cds_seq = $tr->translateable_seq;
+        my ($attrib) = @{$tr->slice->get_all_Attributes('codon_table')};
+        if ($attrib) {
+            $codon_table = $attrib->value;
+        }
+    }
+
     my $codon_seq = Bio::Seq->new(
         -seq      => $cds_seq,
         -moltype  => 'dna',
         -alphabet => 'dna'
     );
-
-    #get codon table
-    my $codon_table;
-    if(defined($tr->{_variation_effect_feature_cache})) {
-        $codon_table = $tr->{_variation_effect_feature_cache}->{codon_table} || 1;
-    }
-    else {
-        my ($attrib) = @{$tr->slice->get_all_Attributes('codon_table')};
-        $codon_table = $attrib ? $attrib->value || 1 : 1;
-    }
 
     # translate
     my $new_pep = $codon_seq->translate(undef, undef, undef, $codon_table)->seq();
